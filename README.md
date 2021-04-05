@@ -795,7 +795,7 @@ All metadata defined under a particular symbol is gathered across the class and 
 
 ```ts
 interface Metadata {
-  self?: unknown;
+  constructor?: unknown;
   public?: Record<string, unknown>;
   private?: unknown[];
 }
@@ -835,7 +835,7 @@ You would be able to access the metadata for this class like so:
 ```js
 Object.getMetadata(C, MY_META);
 // {
-//   self: 'metadata',
+//   constructor: 'metadata',
 
 //   public: {
 //     x: 'metadata',
@@ -925,7 +925,7 @@ class D extends C {
   @myMeta #d = 456;
 }
 
-Object.getMetadata(D).self; // 'metadata'
+Object.getMetadata(D).constructor; // 'metadata'
 Object.getMetadata(D.prototype);
 // {
 //   public: {
@@ -937,7 +937,7 @@ Object.getMetadata(D.prototype);
 // }
 ```
 
-This inheritance is prototype based in the case of public fields and `self`, allowing users to distinguish between _own_ metadata and inherited metadata in these cases.
+This inheritance is prototype based in the case of public fields and `constructor`, allowing users to distinguish between _own_ metadata and inherited metadata in these cases.
 
 This API design meets the following goals:
 
